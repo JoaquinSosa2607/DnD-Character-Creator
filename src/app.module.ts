@@ -10,8 +10,13 @@ import { Equipment } from './entities/equipment.entity';
 import { Proficiency } from './entities/proficiency.entity';
 import { Species } from './entities/species.entity';
 import { Spell } from './entities/spell.entity';
-import { Traits } from './entities/traits.entity';
+import { BackgroundTrait, CharacterTrait, ClassTrait, Traits } from './entities/traits.entity';
 import { Skill } from './entities/skill.entity';
+import { CharacterModule } from './character/character.module';
+import { Flaws } from './entities/flaws.entity';
+import { Ideals } from './entities/ideals.entity';
+import { PersonalityTraits } from './entities/personalityTraits.entity';
+import { Bonds } from './entities/bonds.entity';
 
 @Module({
   imports: [
@@ -22,10 +27,11 @@ import { Skill } from './entities/skill.entity';
       username: DB_USER,
       password: MYSQL_PASSW,
       database: DB_NAME,
-      entities: [AbilityScores, Alignment, Background, Character, CharacterClass, Equipment, Proficiency, Skill, Species, Spell, Traits],
+      entities: [AbilityScores, Alignment, Background, Bonds,Character, CharacterClass, Equipment, Flaws, Ideals, PersonalityTraits,Proficiency, Skill, Species, Spell, CharacterTrait, ClassTrait, BackgroundTrait ],
       synchronize: true,
       logging: true,
     }),
+    CharacterModule,
   ],
 })
 export class AppModule {}

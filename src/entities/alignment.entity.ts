@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Character } from './character.entity';
 
 @Entity()
 export class Alignment {
@@ -10,4 +11,7 @@ export class Alignment {
 
   @Column()
   description: string;
+
+  @OneToMany(() => Character, (character) => character.alignment)
+  characters: Character[];
 }

@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Background } from './background.entity';
 
 @Entity()
 export class Equipment {
@@ -11,4 +12,6 @@ export class Equipment {
   @Column()
   type: string;
 
+  @ManyToMany(() => Background, (background) => background.equipments)
+  backgrounds: Background[];
 }

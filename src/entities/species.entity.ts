@@ -9,6 +9,9 @@ export class Species {
   name: string;
 
   @Column()
+  age: number;
+
+  @Column()
   speed: string;
 
   @Column()

@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { BackgroundTrait, CharacterTrait, ClassTrait } from './traits.entity';
 
 @Entity()
 export class CharacterClass {
@@ -17,4 +18,6 @@ export class CharacterClass {
   @Column()
   savingThrows: string;
 
+  @OneToMany(() => ClassTrait, (trait) => trait.character_class)
+  traits: ClassTrait[];
 }

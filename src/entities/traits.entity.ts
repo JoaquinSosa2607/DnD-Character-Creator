@@ -1,7 +1,15 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Character } from './character.entity';
+import { CharacterClass } from './characterClass.entity';
+import { Background } from './background.entity';
 
-@Entity()
-export class Traits {
+export abstract class Traits {
   @PrimaryGeneratedColumn()
   id: number;
 
@@ -10,4 +18,25 @@ export class Traits {
 
   @Column()
   description: string;
+}
+
+@Entity()
+export class CharacterTrait extends Traits {
+  @ManyToOne(() => Character, (character) => character.traits)
+  @JoinColumn({ name: 'character_id' })
+  character: Character;
+}
+
+@Entity()
+export class ClassTrait extends Traits {
+    @ManyToOne(() => CharacterClass, (char_class) => char_class.traits)
+    @JoinColumn({ name: 'class_id' })
+    character_class: CharacterClass;
+}
+
+@Entity()
+export class BackgroundTrait extends Traits {
+    @ManyToOne(() => Background, (background) => background.traits)
+    @JoinColumn({ name: 'background_d' })
+    background: Background;
 }
